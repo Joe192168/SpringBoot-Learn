@@ -35,5 +35,5 @@ logging:
   level:
     ROOT: INFO
     com:
-      xncoding: DEBUG
+      cxf: DEBUG
   file: C:/logs/app.log

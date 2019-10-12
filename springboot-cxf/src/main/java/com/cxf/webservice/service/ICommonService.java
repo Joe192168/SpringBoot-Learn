@@ -16,17 +16,15 @@ import java.util.List;
  * @since 2018/6/15
  */
 @WebService(name = "CommonService", // 暴露服务名称
-        targetNamespace = "http://model.webservice.xncoding.com/"// 命名空间,一般是接口的包名倒序
+        targetNamespace = "http://service.webservice.cxf.com/"// 命名空间,一般是接口的包名倒序
 )
 public interface ICommonService {
-    @WebMethod
-//    @WebResult(name = "String", targetNamespace = "")
-    public String sayHello(@WebParam(name = "userName") String name);
+    @WebMethod(action = "sayHello")
+    public String sayHello(@WebParam(name = "name",targetNamespace="http://service.webservice.cxf.com/") String name);
 
-    @WebMethod
-//    @WebResult(name = "String", targetNamespace = "")
-    public User getUser(@WebParam(name = "userName") String name);
+    @WebMethod(action = "getUser")
+    public User getUser(@WebParam(name = "name",targetNamespace="http://service.webservice.cxf.com/")String name);
 
-    @WebMethod
+    @WebMethod(action = "getAll")
     public List<OfficeProperty> getAll();
 }

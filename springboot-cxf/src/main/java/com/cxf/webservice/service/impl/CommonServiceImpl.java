@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import javax.jws.WebParam;
 import javax.jws.WebService;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ import java.util.List;
  * @since 2018/6/15
  */
 @WebService(serviceName = "CommonService", // 与接口中指定的name一致
-        targetNamespace = "http://model.webservice.xncoding.com/", // 与接口中的命名空间一致,一般是接口的包名倒
+        targetNamespace = "http://service.webservice.cxf.com/", // 与接口中的命名空间一致,一般是接口的包名倒
         endpointInterface = "com.cxf.webservice.service.ICommonService"// 接口地址
 )
 @Component
