@@ -26,7 +26,8 @@
 	<modules>
 		<module>springboot-cxf</module>
 		<module>springboot-shiro</module>
-	</modules>
+        <module>spring-axis</module>
+    </modules>
 
 	<!--指定使用maven打包-->
 	<build>
