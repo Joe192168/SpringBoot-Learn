@@ -65,6 +65,7 @@ public class CustomRealm extends AuthorizingRealm {
         /*Set<String> sets = new HashSet<>();
         sets.add("admin");
         sets.add("user");*/
+        System.out.println("从数据库中获取角色信息");
         List<String> list = userDao.getRolesByUserName(userName);
         if(CollectionUtils.isEmpty(list)){
             return null;
