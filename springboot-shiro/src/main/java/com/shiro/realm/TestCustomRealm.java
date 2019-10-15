@@ -10,7 +10,6 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

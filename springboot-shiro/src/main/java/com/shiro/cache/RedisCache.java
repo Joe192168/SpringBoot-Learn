@@ -1,6 +1,5 @@
 package com.shiro.cache;
 
-
 import com.shiro.util.JedisUtil;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
