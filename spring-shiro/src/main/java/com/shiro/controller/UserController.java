@@ -27,6 +27,10 @@ public class UserController {
         if (subject.hasRole("admin")){
             return "有admin角色";
         }
+        //校验用户是否有该权限
+        if (subject.isPermitted("user:update")){
+            return "有update权限";
+        }
         return "无admin角色";
     }
 
