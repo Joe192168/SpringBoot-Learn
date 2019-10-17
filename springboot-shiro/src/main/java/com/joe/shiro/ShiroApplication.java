@@ -1,8 +1,10 @@
 package com.joe.shiro;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@MapperScan("com.joe.shiro.mapper")
 @SpringBootApplication
 public class ShiroApplication {
 

@@ -1,13 +1,13 @@
 package com.joe.shiro.config;
 
 import com.joe.shiro.realm.UserRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -64,11 +64,28 @@ public class ShiroConfig {
     }
 
     /**
+     * 创建加密设置
+     */
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher(){
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        // 使用md5 算法进行加密
+        hashedCredentialsMatcher.setHashAlgorithmName("md5");
+        // 设置散列次数： 意为加密几次
+        hashedCredentialsMatcher.setHashIterations(1);
+
+        return hashedCredentialsMatcher;
+    }
+
+    /**
      * 创建Realm
      */
     @Bean(name = "userRealm")
     public UserRealm getRealm(){
-        return new UserRealm();
+        UserRealm userRealm = new UserRealm();
+        userRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return userRealm;
     }
+
 
 }
