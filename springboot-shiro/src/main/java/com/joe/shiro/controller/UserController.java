@@ -2,7 +2,6 @@ package com.joe.shiro.controller;
 
 
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -25,6 +24,11 @@ public class UserController {
     @RequestMapping("/add")
     public String add(){
         return "user/add";
+    }
+
+    @RequestMapping("/noAuth")
+    public String noAuth(){
+        return "noAuth";
     }
 
     @RequestMapping("/update")
