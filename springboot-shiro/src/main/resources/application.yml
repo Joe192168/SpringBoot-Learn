@@ -7,6 +7,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
 mybatis:
   type-aliases-package: com.joe.shiro.pojo
+  mapper-locations: classpath:mappers/*.xml
 
 
 server:
