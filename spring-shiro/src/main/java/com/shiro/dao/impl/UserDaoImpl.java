@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserByUserName(String userName) {
-        String sql = "select username,password from users where username=?";
+        String sql = "select username,password from user where username=?";
         List<User> list = jdbcTemplate.query(sql,new String[]{userName},new RowMapper<User>(){
             @Override
             public User mapRow(ResultSet resultSet, int i) throws SQLException {
