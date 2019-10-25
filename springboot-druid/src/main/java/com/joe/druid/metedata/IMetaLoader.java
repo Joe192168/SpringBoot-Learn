@@ -87,6 +87,14 @@ public interface IMetaLoader {
     boolean insert(String tabName,String[] fields,String[] data);
 
     /**
+     * 删除表数据
+     * @param fields 参数字段
+     * @param data 参数字段数据
+     * @param tabName 表名称
+     */
+    boolean delete(String tabName,String[] fields,String[] data);
+
+    /**
      * 查询表 【查询结果的顺序要和数据库字段的顺序一致】
      * @param tabName 表名
      * @param fields 参数字段

@@ -616,17 +616,35 @@ public class MetaLoaderImpl implements IMetaLoader {
 
     /**
      * 删除表数据
+     * @param fields 参数字段
+     * @param data 参数字段数据
      * @param tabName 表名称
      */
-    public void delete(String tabName){
+    public boolean delete(String tabName,String[] fields,String[] data){
         PreparedStatement stmt = null;
         try {
-            String sql = "delete from "+tabName+";";
+            String sql = "delete from "+tabName+" where ";
             logger.error("删除数据的sql:",sql);
+            int length = fields.length;
+            for(int i=0;i<length;i++){
+                sql+=fields[i]+" = ? ";
+                //防止最后一个,
+                if(i<length-1){
+                    sql+=" and ";
+                }
+            }
+            sql+=";";
+            logger.error("查询sql:",sql);
             //预处理SQL 防止注入
             stmt = conn.prepareStatement(sql);
+            //注入参数
+            for(int i=0;i<length;i++){
+                stmt.setString(i+1,data[i]);
+            }
             //执行
-            stmt.executeUpdate();
+            int i = stmt.executeUpdate();
+            //返回  true
+            return i > 0;
         } catch (SQLException e) {
             logger.error("删除数据失败", e.getMessage());
         } finally {
@@ -634,6 +652,7 @@ public class MetaLoaderImpl implements IMetaLoader {
             JDBCUtils.closePreparedStatement(stmt);
             JDBCUtils.closeConnection(conn);
         }
+        return false;
     }
 
     /**
