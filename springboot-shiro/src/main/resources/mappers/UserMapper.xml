@@ -3,8 +3,12 @@
 <mapper namespace="com.joe.shiro.mapper.UserMapper">
 
     <select id="getUserByName" parameterType="String" resultType="com.joe.shiro.pojo.User">
-        select username,password from users where username = #{username}
+        select username,password from user where username = #{username}
     </select>
 
+
+    <select id="getRolesByUsername" parameterType="String" resultType="String">
+        select ur.role_name from user u left join user_roles ur on u.username = ur.username  where u.username = #{username}
+    </select>
 
 </mapper>

@@ -6,6 +6,8 @@ import com.joe.shiro.services.IUserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServicesImpl implements IUserServices {
 
@@ -15,5 +17,10 @@ public class UserServicesImpl implements IUserServices {
     @Override
     public User getUserByName(String username) {
         return userMapper.getUserByName(username);
+    }
+
+    @Override
+    public List<String> getRolesByUsername(String username) {
+        return userMapper.getRolesByUsername(username);
     }
 }
