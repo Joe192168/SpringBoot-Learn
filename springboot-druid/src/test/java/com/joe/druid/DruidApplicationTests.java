@@ -1,6 +1,6 @@
 package com.joe.druid;
 
-import com.joe.druid.metedata.MetaLoader;
+import com.joe.druid.metedata.IMetaLoader;
 import com.joe.druid.metedata.MetaLoaderImpl;
 import com.joe.druid.pojo.TransferDataSource;
 import org.junit.Test;
@@ -14,24 +14,34 @@ import java.util.Map;
 public class DruidApplicationTests {
 
     @Autowired
-    private MetaLoader metaLoader;
+    private IMetaLoader metaLoader;
 
     @Test
-    public void contextLoads()throws Exception {
+    public void contextLoads() {
         TransferDataSource transferDataSource = new TransferDataSource();
         transferDataSource.setAddress("jdbc:mysql://localhost:3306/test?serverTimezone=UTC");
         transferDataSource.setDriver("com.mysql.cj.jdbc.Driver");
         transferDataSource.setUserName("root");
         transferDataSource.setPassWord("root");
-        MetaLoaderImpl metaLoader1 = new MetaLoaderImpl(transferDataSource);
-        Map<String,Object> map = metaLoader1.getDataBaseInformations();
-        System.out.println("URL:" + map.get("URL"));
-        System.out.println("UserName:" + map.get("UserName"));
-        System.out.println("isReadOnly:" + map.get("isReadOnly"));
-        System.out.println("DatabaseProductName:" + map.get("DatabaseProductName"));
-        System.out.println("DatabaseProductVersion:" + map.get("DatabaseProductVersion"));
-        System.out.println("DriverName:" + map.get("DriverName"));
-        System.out.println("DriverVersion:" + map.get("DriverVersion"));
+        try {
+            MetaLoaderImpl metaLoader1 = new MetaLoaderImpl(transferDataSource);
+            Map<String,Object> map = metaLoader1.getDataBaseInformations();
+            System.out.println("URL:" + map.get("URL"));
+            System.out.println("UserName:" + map.get("UserName"));
+            System.out.println("isReadOnly:" + map.get("isReadOnly"));
+            System.out.println("DatabaseProductName:" + map.get("DatabaseProductName"));
+            System.out.println("DatabaseProductVersion:" + map.get("DatabaseProductVersion"));
+            System.out.println("DriverName:" + map.get("DriverName"));
+            System.out.println("DriverVersion:" + map.get("DriverVersion"));
+
+            if ((Boolean) map.get("falg")){
+                System.out.println("连接成功！");
+            }else{
+                System.out.println("连接失败异常信息:"+map.get("msg"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -119,6 +129,34 @@ public class DruidApplicationTests {
             System.out.println("列名称："+col.get("columnName"));
             System.out.println("注释："+col.get("remarks"));
         }
+    }
+
+    @Test
+    public void contextLoads5()throws Exception {
+        TransferDataSource transferDataSource = new TransferDataSource();
+//        transferDataSource.setUrl("jdbc:mysql://localhost:3306/test?serverTimezone=UTC");
+//        transferDataSource.setDriver("com.mysql.cj.jdbc.Driver");
+//        transferDataSource.setUserName("root");
+//        transferDataSource.setPassWord("root");
+
+//        transferDataSource.setAddress("jdbc:oracle:thin:@10.0.0.100:1521:edw");
+//        transferDataSource.setDriver("oracle.jdbc.driver.OracleDriver");
+//        transferDataSource.setUserName("inmon");
+//        transferDataSource.setPassWord("jhsz0603");
+//        transferDataSource.setSchemaName("INMON");
+
+        transferDataSource.setAddress("jdbc:postgresql://10.0.0.166:5432/edw");
+        transferDataSource.setDriver("org.postgresql.Driver");
+        transferDataSource.setUserName("gpadmin");
+        transferDataSource.setPassWord("gpadmin123");
+        IMetaLoader metaLoader1 = new MetaLoaderImpl(transferDataSource);
+        List<Map<String, Object>> list = metaLoader1.getTableColumns("t_users");
+
+        for (Map<String, Object> otr:list){
+            System.out.println("tableName："+otr.get("tableName"));
+            System.out.println("columnName："+otr.get("columnName"));
+        }
+
     }
 
 

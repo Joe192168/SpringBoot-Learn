@@ -1,11 +1,9 @@
 package com.joe.druid.metedata;
 
-import org.springframework.jdbc.core.ResultSetExtractor;
-
 import java.util.List;
 import java.util.Map;
 
-public interface MetaLoader {
+public interface IMetaLoader {
 
     /**
      * 获得数据库的一些相关信息
@@ -40,7 +38,7 @@ public interface MetaLoader {
     /**
      * 获得一个表的主键信息
      */
-    List<Map<String, Object>> getAllPrimaryKeys(String tableName);
+    Map<String, Object> getAllPrimaryKeys(String tableName);
 
     /**
      * 获得一个表的外键信息
@@ -61,5 +59,39 @@ public interface MetaLoader {
      */
     List<Map<String, Object>> getListColumn(String sql);
 
-    <T> T query(String sql, String exceptionMessage, ResultSetExtractor<T> rsExtractor, Object... args);
+    /**
+     * @Description TODO增删改的通用方法
+     * @Author joe
+     * @Date 2019/10/23 9:40
+     * @Param [sql 要执行的sql, args 对象类型的数组  里面存放着 sql执行的占位符参数]
+     * @Return boolean
+     * @Exception
+     */
+    boolean executeUpdate(String sql, Object... args);
+
+    /**
+     * @Program: geometry-bi
+     * @Description: TODO通用带参sql查询
+     * @Author: xiaoqiaohui
+     * @Create: 2019/10/25 10:46
+     * @Version: 1.0.0
+     */
+    List<Map<String, Object>> executeQuery(String sql, Object... args);
+
+    /**
+     * 通用insert
+     *
+     * @param tabName
+     * @return
+     */
+    boolean insert(String tabName,String[] fields,String[] data);
+
+    /**
+     * 查询表 【查询结果的顺序要和数据库字段的顺序一致】
+     * @param tabName 表名
+     * @param fields 参数字段
+     * @param data 参数字段数据
+     * @param tab_fields 数据库的字段
+     */
+    String[] query(String tabName,String[] fields,String[] data,String[] tab_fields);
 }
