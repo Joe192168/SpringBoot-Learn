@@ -1,4 +1,4 @@
-package com.joe.druid.pojo;
+package com.joe.druid.domain;
 
 import java.io.Serializable;
 

@@ -1,11 +1,13 @@
 package com.joe.druid.metedata;
 
 import com.joe.druid.hikari.HikariConfigConnect;
-import com.joe.druid.pojo.TransferDataSource;
+import com.joe.druid.domain.TransferDataSource;
 import com.joe.druid.utils.JDBCUtils;
+import com.joe.druid.utils.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 import java.sql.*;
 import java.util.*;
 
@@ -593,7 +595,7 @@ public class MetaLoaderImpl implements IMetaLoader {
                 }
             }
             sql+=");";
-            System.out.println("添加数据的sql:"+sql);
+            logger.error("添加数据的sql:"+sql);
             //预处理SQL 防止注入
             stmt = conn.prepareStatement(sql);
             //注入参数
@@ -605,7 +607,7 @@ public class MetaLoaderImpl implements IMetaLoader {
             //返回  true
             return i > 0;
         } catch (SQLException e) {
-            System.out.println("添加数据失败" + e.getMessage());
+            logger.error("添加数据失败:",e.getMessage());
         } finally {
             //关闭资源
             JDBCUtils.closePreparedStatement(stmt);
@@ -655,28 +657,23 @@ public class MetaLoaderImpl implements IMetaLoader {
         return false;
     }
 
-    /**
-     * 查询表 【查询结果的顺序要和数据库字段的顺序一致】
-     * @param tabName 表名
-     * @param fields 参数字段
-     * @param data 参数字段数据
-     * @param tab_fields 数据库的字段
-     */
-    public String[] query(String tabName,String[] fields,String[] data,String[] tab_fields){
+    @Override
+    public int queryCount(String tabName, String[] fields, String[] data   ) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String[] result = null;
+        int count = 0;
         try {
-            String sql = "select * from "+tabName+" where ";
+            String sql = "select count(*) from "+tabName+" where 1=1 ";
             int length = fields.length;
             for(int i=0;i<length;i++){
-                sql+=fields[i]+" = ? ";
+                sql+= " and " + fields[i]+" = ? ";
                 //防止最后一个,
                 if(i<length-1){
                     sql+=" and ";
                 }
             }
-            sql+=";";
+            sql+=" ";
             logger.error("查询sql:",sql);
             //预处理SQL 防止注入
             stmt = conn.prepareStatement(sql);
@@ -686,12 +683,8 @@ public class MetaLoaderImpl implements IMetaLoader {
             }
             //查询结果集
             rs = stmt.executeQuery();
-            //存放结果集
-            result = new String[tab_fields.length];
             while(rs.next()){
-                for (int i = 0; i < tab_fields.length; i++) {
-                    result[i] = rs.getString(tab_fields[i]);
-                }
+                count = rs.getInt(1);
             }
         } catch (SQLException e) {
             logger.error("查询失败" , e.getMessage());
@@ -699,11 +692,73 @@ public class MetaLoaderImpl implements IMetaLoader {
             //关闭资源
             JDBCUtils.closePreparedStatement(stmt);
             JDBCUtils.closeResultSet(rs);
-            JDBCUtils.closeConnection(conn);
+            //JDBCUtils.closeConnection(conn);
         }
-        return result;
+        return count;
     }
 
-
+    /**
+     * 查询表 【查询结果的顺序要和数据库字段的顺序一致】
+     * @param tabName 表名
+     * @param fields 参数字段
+     * @param data 参数字段数据
+     * @param tab_fields 数据库的字段
+     * @param page 页数
+     */
+    public List<Map<String,Object>> query(String tabName, String[] fields, String[] data, String[] tab_fields,Page page){
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String[] result = null;
+        List<Map<String, Object>> dataList = null;
+        try {
+            dataList = new ArrayList<Map<String,Object>>();
+            String sql = "select * from "+tabName+" where 1=1 ";
+            int length = fields.length;
+            for(int i=0;i<length;i++){
+                sql+= " and " + fields[i]+" = ? ";
+                //防止最后一个,
+                if(i<length-1){
+                    sql+=" and ";
+                }
+            }
+            sql+=" ";
+            //预处理SQL 防止注入
+            //游标类型：
+            //ResultSet.TYPE_FORWORD_ONLY:只进游标
+            //ResultSet.TYPE_SCROLL_INSENSITIVE:可滚动。但是不受其他用户对数据库更改的影响。
+            //ResultSet.TYPE_SCROLL_SENSITIVE:可滚动。当其他用户更改数据库时这个记录也会改变。
+            //能否更新记录：
+            //ResultSet.CONCUR_READ_ONLY,只读
+            //ResultSet.CONCUR_UPDATABLE,可更新
+            stmt = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            //注入参数
+            for(int i=0;i<length;i++){
+                stmt.setString(i+1,data[i]);
+            }
+            stmt.setMaxRows(page.getEndIndex());//关键代码，设置最大记录数为当前页记录的截止下标
+            logger.error("查询sql:",sql);
+            //查询结果集
+            rs = stmt.executeQuery();
+            if (page.getBeginIndex() > 0) {
+                rs.absolute(page.getBeginIndex());//关键代码，直接移动游标为当前页起始记录处
+            }
+            while(rs.next()){
+                Map<String, Object> map = new LinkedHashMap();
+                for (int i = 0; i < tab_fields.length; i++) {
+                    map.put(tab_fields[i],rs.getString(tab_fields[i]));
+                }
+                dataList.add(map);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            logger.error("查询失败" , e.getMessage());
+        } finally {
+            //关闭资源
+            JDBCUtils.closePreparedStatement(stmt);
+            JDBCUtils.closeResultSet(rs);
+            JDBCUtils.closeConnection(conn);
+        }
+        return dataList;
+    }
 
 }

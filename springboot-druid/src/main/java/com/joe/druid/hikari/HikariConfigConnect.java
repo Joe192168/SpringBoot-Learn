@@ -1,19 +1,13 @@
 package com.joe.druid.hikari;
 
-import com.joe.druid.pojo.TransferDataSource;
+import com.joe.druid.domain.TransferDataSource;
 import com.zaxxer.hikari.HikariDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.sql.Connection;
 import java.util.Properties;
 
 public class HikariConfigConnect {
 
-    private static final Logger logger = LoggerFactory.getLogger(HikariConfigConnect.class);
-
     public static Connection GetConnect(TransferDataSource transferDataSource)throws Exception {
-        Connection con=null;
-
         HikariDataSource config = new HikariDataSource();
         config = new HikariDataSource();
         config.setJdbcUrl(transferDataSource.getAddress());
@@ -34,10 +28,8 @@ public class HikariConfigConnect {
         properties.setProperty("remarks", "true");
         properties.setProperty("useInformationSchema", "true");
         config.setDataSourceProperties(properties);
-
         //分配连接
-        con = config.getConnection();
-
+        Connection con = config.getConnection();
         return con;
     }
 

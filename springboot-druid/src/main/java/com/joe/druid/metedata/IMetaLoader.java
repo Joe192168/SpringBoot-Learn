@@ -1,5 +1,6 @@
 package com.joe.druid.metedata;
 
+import com.joe.druid.utils.Page;
 import java.util.List;
 import java.util.Map;
 
@@ -94,12 +95,23 @@ public interface IMetaLoader {
      */
     boolean delete(String tabName,String[] fields,String[] data);
 
+
+    /**
+     * 查询表Count
+     * @param tabName 表名
+     * @param fields 参数字段
+     * @param data 参数字段数据
+     */
+    int queryCount(String tabName, String[] fields, String[] data);
+
     /**
      * 查询表 【查询结果的顺序要和数据库字段的顺序一致】
      * @param tabName 表名
      * @param fields 参数字段
      * @param data 参数字段数据
      * @param tab_fields 数据库的字段
+     * @param page 页数
      */
-    String[] query(String tabName,String[] fields,String[] data,String[] tab_fields);
+    List<Map<String,Object>> query(String tabName, String[] fields, String[] data, String[] tab_fields, Page page);
+
 }
