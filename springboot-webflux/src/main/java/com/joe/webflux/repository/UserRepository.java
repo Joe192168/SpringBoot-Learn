@@ -1,8 +1,9 @@
-package com.joe.springbootdemo.repository;
+package com.joe.webflux.repository;
 
-import com.joe.springbootdemo.domain.User;
+import com.joe.webflux.domain.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -35,5 +36,12 @@ public class UserRepository {
         Integer id = atomicInteger.incrementAndGet();
         user.setId(id);
         return concurrentMap.put(id,user) == null;
+    }
+
+    /**
+    * 返回所有用户列表
+    */
+    public Collection<User> findAll(){
+        return concurrentMap.values();
     }
 }

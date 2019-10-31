@@ -29,7 +29,7 @@
 		<module>spring-shiro</module>
 		<module>springboot-shiro</module>
 		<module>springboot-druid</module>
-		<module>springboot-demo</module>
+		<module>springboot-webflux</module>
 	</modules>
 
 	<dependencies>

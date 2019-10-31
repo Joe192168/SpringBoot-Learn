@@ -1,7 +1,7 @@
-package com.joe.springbootdemo.controller;
+package com.joe.webflux.controller;
 
-import com.joe.springbootdemo.domain.User;
-import com.joe.springbootdemo.repository.UserRepository;
+import com.joe.webflux.domain.User;
+import com.joe.webflux.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

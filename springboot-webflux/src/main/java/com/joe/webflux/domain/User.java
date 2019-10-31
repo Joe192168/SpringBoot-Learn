@@ -1,4 +1,4 @@
-package com.joe.springbootdemo.domain;
+package com.joe.webflux.domain;
 
 public class User {
 

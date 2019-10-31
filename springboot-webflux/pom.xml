@@ -9,9 +9,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.joe</groupId>
-    <artifactId>springboot-demo</artifactId>
+    <artifactId>springboot-webflux</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-demo</name>
+    <name>springboot-webflux</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
         <dependency>
@@ -36,8 +36,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
