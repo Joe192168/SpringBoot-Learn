@@ -2,8 +2,8 @@ package genterator;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.joe.entity.User;
-import com.joe.service.IUserService;
+import com.joe.entity.TUsers;
+import com.joe.service.ITUsersService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class UserTest {
 
     @Autowired
-    private IUserService iUserService;
+    private ITUsersService iUserService;
 
     /**
      * 自增生成器
@@ -43,8 +43,8 @@ public class UserTest {
         //id 从1开始生成
         Integer id = atomicInteger.incrementAndGet();
 
-        User user = new User();
-        user.setId(id+"");
+        TUsers user = new TUsers();
+        user.setId(id);
         user.setUsername("小明");
         user.setPassword("123");
         boolean flg = iUserService.insert(user);
@@ -54,7 +54,7 @@ public class UserTest {
     @Test
     public void testUpdate(){
         //先查询用户，再根据需求修改
-        User user = iUserService.selectById(2);
+        TUsers user = iUserService.selectById(2);
         //设置要修改的信息
         user.setUsername("小张");
         boolean flg = iUserService.updateById(user);
@@ -63,9 +63,9 @@ public class UserTest {
 
     @Test
     public void testFindAll(){
-        List<User> deptList = iUserService.selectList(null);
-        for(User dept:deptList){
-            System.out.println(dept);
+        List<TUsers> userList = iUserService.selectList(null);
+        for(TUsers user:userList){
+            System.out.println(user);
         }
     }
 
@@ -79,9 +79,9 @@ public class UserTest {
     public void testPageInfo(){
         Page page = new Page(1,2);
         //查询条件实体
-        EntityWrapper<User> ew = new EntityWrapper<>();
+        EntityWrapper<TUsers> ew = new EntityWrapper<>();
         ew.like("username","小").orderBy("id");
-        Page<User> deptPage = iUserService.selectPage(page, ew);
+        Page<TUsers> deptPage = iUserService.selectPage(page, ew);
         System.out.println("总页数："+deptPage.getTotal());
         System.out.println("当前页码："+deptPage.getCurrent());
         System.out.println("每页显示条数："+deptPage.getSize());
