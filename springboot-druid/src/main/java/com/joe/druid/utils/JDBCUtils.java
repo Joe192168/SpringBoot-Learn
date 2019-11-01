@@ -3,11 +3,13 @@ package com.joe.druid.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.util.Assert;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class JDBCUtils {
@@ -88,25 +90,6 @@ public class JDBCUtils {
 				// We don't trust the JDBC driver: It might throw RuntimeException or Error.
 				logger.debug("Unexpected exception on closing JDBC PreparedStatement", ex);
 			}
-		}
-	}
-	
-	public static <T> T query(DatabaseMetaData dbm, String sql, String exceptionMessage, ResultSetExtractor<T> rsExtractor, Object... args){
-		ResultSet rs=null;
-		PreparedStatement st=null;
-		try{
-			Connection con=dbm.getConnection();
-			 st=con.prepareStatement(sql);
-			for(int i=1;i<=args.length;++i){
-				st.setObject(i, args[i-1]);
-			}
-			rs=st.executeQuery();
-			return rsExtractor.extractData(rs);
-		}catch(SQLException e){
-			throw new RuntimeException(exceptionMessage, e);
-		}finally{
-			JDBCUtils.closePreparedStatement(st);
-			JDBCUtils.closeResultSet(rs);
 		}
 	}
 

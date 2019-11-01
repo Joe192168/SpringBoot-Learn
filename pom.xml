@@ -30,6 +30,7 @@
 		<module>springboot-shiro</module>
 		<module>springboot-druid</module>
 		<module>springboot-webflux</module>
+		<module>springmvc-mybatisplus</module>
 	</modules>
 
 	<dependencies>
