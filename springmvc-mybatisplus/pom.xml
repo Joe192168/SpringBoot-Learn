@@ -3,16 +3,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-<<<<<<< HEAD
   <parent>
     <groupId>com.joe</groupId>
     <artifactId>springboot-learn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-=======
 
->>>>>>> origin/master
   <groupId>com.joe</groupId>
   <artifactId>springmvc-mybatisplus</artifactId>
   <version>0.0.1-SNAPSHOT</version>
@@ -22,8 +19,6 @@
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
-<<<<<<< HEAD
-=======
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -43,7 +38,6 @@
     <velocity.version>2.0</velocity.version>
   </properties>
 
->>>>>>> origin/master
   <dependencies>
     <!--spring 基础包-->
     <dependency>

@@ -21,13 +21,8 @@ public class GenteratorCode {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         gc.setOutputDir(rb.getString("OutputDir"));
-<<<<<<< HEAD
         gc.setFileOverride(true);//是否覆盖
         gc.setActiveRecord(true);// 不需要ActiveRecord特性的请改为false
-=======
-        gc.setFileOverride(true);
-        gc.setActiveRecord(true);
->>>>>>> origin/master
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(true);// XML columList
@@ -60,13 +55,9 @@ public class GenteratorCode {
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         // strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
-        //strategy.setTablePrefix(new String[] { "SYS_" });// 此处可以修改为您的表前缀
+        strategy.setTablePrefix(new String[] { "t_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-<<<<<<< HEAD
         strategy.setInclude(new String[] {"t_users"}); // 需要生成的表
-=======
-        strategy.setInclude(new String[] {"user"}); // 需要生成的表
->>>>>>> origin/master
         //strategy.setExclude(new String[]{"test"}); // 排除生成的表
         mpg.setStrategy(strategy);
 
