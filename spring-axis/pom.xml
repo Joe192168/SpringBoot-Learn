@@ -116,4 +116,8 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>spring-axis</finalName>
+    </build>
+
 </project>
