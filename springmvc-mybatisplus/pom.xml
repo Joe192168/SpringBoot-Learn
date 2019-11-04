@@ -9,6 +9,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
+
   <groupId>com.joe</groupId>
   <artifactId>springmvc-mybatisplus</artifactId>
   <version>0.0.1-SNAPSHOT</version>
@@ -17,6 +18,25 @@
   <name>springmvc-mybatisplus Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <spring.version>5.0.4.RELEASE</spring.version>
+    <aspectJ.version>1.8.13</aspectJ.version>
+    <mybatisplus.version>2.2.0</mybatisplus.version>
+    <oracle.version>6</oracle.version>
+    <log4j.version>1.2.17</log4j.version>
+    <slf4j.version>1.7.25</slf4j.version>
+    <c3p0.version>0.9.5.2</c3p0.version>
+    <servlet.version>3.1.0</servlet.version>
+    <jstl.version>1.2.5</jstl.version>
+    <taglibs.version>1.2.5</taglibs.version>
+    <jackson.version>2.9.4</jackson.version>
+    <commons.lang3.version>3.7</commons.lang3.version>
+    <velocity.version>2.0</velocity.version>
+  </properties>
 
   <dependencies>
     <!--spring 基础包-->

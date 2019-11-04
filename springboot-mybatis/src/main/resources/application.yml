@@ -5,25 +5,17 @@ spring:
     password: root
     url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=UTF-8
     type: com.alibaba.druid.pool.DruidDataSource
-  jpa:
-    show-sql: true
   mvc:
     view:
-      # \u9875\u9762\u9ED8\u8BA4\u524D\u7F00\u76EE\u5F55
+      # 页面默认前缀目录
       prefix: /WEB-INF/jsp/
-      # \u54CD\u5E94\u9875\u9762\u9ED8\u8BA4\u540E\u7F00
+      # 响应页面默认后缀
       suffix: .jsp
-    #\u9759\u6001\u8D44\u6E90\u8DEF\u5F84
+    #静态资源路径
     static-path-pattern: /**
-
-logging:
-  level:
-    #\u8BBE\u7F6Emybatis\u7684sql\u8BED\u53E5\u6253\u5370\u5230\u63A7\u5236\u53F0\u3002
-    com.yunda.study.mybatis.dao.mapper: trace
-
-mybatis:
-  type-aliases-package: com.joe.entity
-  mapper-locations: classpath:mappers/*.xml
 
 server:
   port: 8080
+mybatis-plus:
+    type-aliases-package: com.joe.entity
+    mapper-locations: classpath:mappers/*.xml

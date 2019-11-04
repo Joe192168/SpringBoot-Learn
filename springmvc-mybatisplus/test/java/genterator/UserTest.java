@@ -2,8 +2,8 @@ package genterator;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.joe.entity.TUsers;
-import com.joe.service.ITUsersService;
+import com.joe.entity.User;
+import com.joe.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class UserTest {
 
     @Autowired
-    private ITUsersService iUserService;
+    private IUserService iUserService;
 
     /**
      * 自增生成器
@@ -43,8 +43,8 @@ public class UserTest {
         //id 从1开始生成
         Integer id = atomicInteger.incrementAndGet();
 
-        TUsers user = new TUsers();
-        user.setId(id);
+        User user = new User();
+        user.setId(id+"");
         user.setUsername("小明");
         user.setPassword("123");
         boolean flg = iUserService.insert(user);
@@ -54,7 +54,7 @@ public class UserTest {
     @Test
     public void testUpdate(){
         //先查询用户，再根据需求修改
-        TUsers user = iUserService.selectById(2);
+        User user = iUserService.selectById(2);
         //设置要修改的信息
         user.setUsername("小张");
         boolean flg = iUserService.updateById(user);
@@ -63,8 +63,8 @@ public class UserTest {
 
     @Test
     public void testFindAll(){
-        List<TUsers> userList = iUserService.selectList(null);
-        for(TUsers user:userList){
+        List<User> userList = iUserService.selectList(null);
+        for(User user:userList){
             System.out.println(user);
         }
     }
@@ -79,9 +79,9 @@ public class UserTest {
     public void testPageInfo(){
         Page page = new Page(1,2);
         //查询条件实体
-        EntityWrapper<TUsers> ew = new EntityWrapper<>();
+        EntityWrapper<User> ew = new EntityWrapper<>();
         ew.like("username","小").orderBy("id");
-        Page<TUsers> deptPage = iUserService.selectPage(page, ew);
+        Page<User> deptPage = iUserService.selectPage(page, ew);
         System.out.println("总页数："+deptPage.getTotal());
         System.out.println("当前页码："+deptPage.getCurrent());
         System.out.println("每页显示条数："+deptPage.getSize());

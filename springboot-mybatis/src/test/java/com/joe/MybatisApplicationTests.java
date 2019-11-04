@@ -6,11 +6,15 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 
+/**
+ * 代码生成器演示
+ */
 @SpringBootTest
 class MybatisApplicationTests {
 
@@ -19,6 +23,8 @@ class MybatisApplicationTests {
         //用来获取mybatis-plus.properties文件的配置信息
         final ResourceBundle rb = ResourceBundle.getBundle("mybatis-plus");
         AutoGenerator mpg = new AutoGenerator();
+        // 选择 freemarker 引擎，默认 Velocity
+        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         gc.setOutputDir(rb.getString("OutputDir"));
