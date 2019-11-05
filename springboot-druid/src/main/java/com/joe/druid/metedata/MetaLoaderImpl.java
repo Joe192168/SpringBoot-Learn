@@ -658,6 +658,50 @@ public class MetaLoaderImpl implements IMetaLoader {
     }
 
     @Override
+    public boolean update(String tabName, String[] fields, String[] data,String[] conditions,String[] conditions_param) {
+        PreparedStatement stmt = null;
+        try {
+            String sql = "update "+tabName+" set ";
+            logger.error("修改数据的sql:",sql);
+            int length = fields.length;
+            for(int i=0;i<length;i++){
+                sql+=fields[i]+" = '"+data[i]+"' ";
+                //防止最后一个,
+                if(i<length-1){
+                    sql+=" and ";
+                }
+            }
+            sql+=" where ";
+            int length2 = conditions.length;
+            for(int i=0;i<length2;i++){
+                sql+=conditions[i]+" = ? ";
+                //防止最后一个,
+                if(i<length2-1){
+                    sql+=" and ";
+                }
+            }
+            logger.error("查询sql:",sql);
+            //预处理SQL 防止注入
+            stmt = conn.prepareStatement(sql);
+            //注入参数
+            for(int i=0;i<length2;i++){
+                stmt.setString(i+1,conditions_param[i]);
+            }
+            //执行
+            int i = stmt.executeUpdate();
+            //返回  true
+            return i > 0;
+        } catch (SQLException e) {
+            logger.error("修改数据失败", e.getMessage());
+        } finally {
+            //关闭资源
+            JDBCUtils.closePreparedStatement(stmt);
+            JDBCUtils.closeConnection(conn);
+        }
+        return false;
+    }
+
+    @Override
     public int queryCount(String tabName, String[] fields, String[] data   ) {
         PreparedStatement stmt = null;
         ResultSet rs = null;

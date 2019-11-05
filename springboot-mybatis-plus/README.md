@@ -1,0 +1,1 @@
+注意：Mybatis Plus 3.0.7 版本才开始用【自定义sql】+【QueryWrapper】，低版本不能使用，还是老实写SQL进行条件拼接

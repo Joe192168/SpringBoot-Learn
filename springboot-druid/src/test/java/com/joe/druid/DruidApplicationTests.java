@@ -138,6 +138,33 @@ public class DruidApplicationTests {
         }
     }
 
+    @Test
+    public void contextLoads5()throws Exception {
+        TransferDataSource transferDataSource = new TransferDataSource();
+        transferDataSource.setAddress("jdbc:mysql://localhost:3306/test?serverTimezone=UTC");
+        transferDataSource.setDriver("com.mysql.cj.jdbc.Driver");
+        transferDataSource.setUserName("root");
+        transferDataSource.setPassWord("root");
+
+//        transferDataSource.setAddress("jdbc:oracle:thin:@10.0.0.100:1521:edw");
+//        transferDataSource.setDriver("oracle.jdbc.driver.OracleDriver");
+//        transferDataSource.setUserName("inmon");
+//        transferDataSource.setPassWord("jhsz0603");
+//        transferDataSource.setSchemaName("INMON");
+
+//        transferDataSource.setAddress("jdbc:postgresql://10.0.0.166:5432/edw");
+//        transferDataSource.setDriver("org.postgresql.Driver");
+//        transferDataSource.setUserName("gpadmin");
+//        transferDataSource.setPassWord("gpadmin123");
+        MetaLoaderImpl metaLoader1 = new MetaLoaderImpl(transferDataSource);
+        String[] fields = {"username"};
+        String[] data = {"1442"};
+        String[] conditions = {"id"};
+        String[] conditions_param = {"14"};
+        boolean falg = metaLoader1.update("t_users",fields,data,conditions,conditions_param);
+        System.out.println("更新结果："+falg);
+    }
+
     //测试分页
     @Test
     public void contextLoads6()throws Exception {

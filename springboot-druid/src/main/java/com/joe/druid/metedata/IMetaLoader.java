@@ -97,6 +97,17 @@ public interface IMetaLoader {
 
 
     /**
+     * 更新表数据
+     * @param fields 参数字段
+     * @param data 参数字段数据
+     * @param conditions 参数字段
+     * @param conditions_param 参数字段数据
+     * @param tabName 表名称
+     */
+    boolean update(String tabName,String[] fields,String[] data,String[] conditions,String[] conditions_param);
+
+
+    /**
      * 查询表Count
      * @param tabName 表名
      * @param fields 参数字段
