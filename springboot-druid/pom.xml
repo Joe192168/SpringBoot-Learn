@@ -16,6 +16,8 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <db2.version>10.1</db2.version>
+        <db2jcc.version>9.7</db2jcc.version>
     </properties>
 
     <dependencies>
@@ -30,6 +32,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <!-- db2驱动 -->
+        <dependency>
+            <groupId>com.ibm.db2.jcc</groupId>
+            <artifactId>db2jcc4</artifactId>
+            <version>${db2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.db2</groupId>
+            <artifactId>db2jcc_license_cu</artifactId>
+            <version>${db2jcc.version}</version>
         </dependency>
     </dependencies>
 

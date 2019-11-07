@@ -36,16 +36,4 @@ public class User extends Model<User> {
          */
         return this.id;
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", email='" + email + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dataTime=" + dataTime +
-                '}';
-    }
 }

@@ -5,15 +5,15 @@ package com.joe.druid.utils;
  * @author joe
  * 
  */  
-public class Page {
-    private int rowTotal;// 总记录数  
+public class PageUtils {
+    private int rowTotal;// 总记录数
     private int pageSize = 10;// 每页记录数
 
-    private int count;// 当前页码  
+    private int count;// 当前页码
 
-    private int total;// 总页数  
-    private int beginIndex;//起始记录下标  
-    private int endIndex;//截止记录下标  
+    private int total;// 总页数
+    private int beginIndex;//起始记录下标
+    private int endIndex;//截止记录下标
 
     /**
      * 使用总记录数、当前页码构造 
@@ -22,7 +22,7 @@ public class Page {
      * @param count
      *            页码，从1开始
      */
-    public Page(int totalRow, int count) {
+    public PageUtils(int totalRow, int count) {
         this.rowTotal = totalRow;
         this.count = count;
         calculate();
@@ -37,7 +37,7 @@ public class Page {
      * @param pageSize
      *            默认30条 
      */
-    public Page(int totalRow, int count, int pageSize) {
+    public PageUtils(int totalRow, int count, int pageSize) {
         this.rowTotal = totalRow;
         this.count = count;
         this.pageSize = pageSize;

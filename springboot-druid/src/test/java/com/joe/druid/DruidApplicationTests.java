@@ -3,7 +3,7 @@ package com.joe.druid;
 import com.joe.druid.metedata.IMetaLoader;
 import com.joe.druid.metedata.MetaLoaderImpl;
 import com.joe.druid.domain.TransferDataSource;
-import com.joe.druid.utils.Page;
+import com.joe.druid.utils.PageUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -219,7 +219,7 @@ public class DruidApplicationTests {
         int pageSize = 5;//每页数，默认10
         //取得总记录数，创建Page对象
         int totalRow = metaLoader1.queryCount("T_USERS",fields,data);//通过select count 取得总记录数
-        Page page = new Page(totalRow,pageCount,pageSize);
+        PageUtils page = new PageUtils(totalRow,pageCount,pageSize);
         List<Map<String,Object>> pageInfo = metaLoader1.query("T_USERS",fields,data,tab_fields,page);
 
         for (Map<String,Object> map:pageInfo){

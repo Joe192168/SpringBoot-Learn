@@ -1,6 +1,7 @@
 package com.joe.druid.metedata;
 
-import com.joe.druid.utils.Page;
+import com.joe.druid.utils.PageUtils;
+
 import java.util.List;
 import java.util.Map;
 
@@ -123,6 +124,6 @@ public interface IMetaLoader {
      * @param tab_fields 数据库的字段
      * @param page 页数
      */
-    List<Map<String,Object>> query(String tabName, String[] fields, String[] data, String[] tab_fields, Page page);
+    List<Map<String,Object>> query(String tabName, String[] fields, String[] data, String[] tab_fields, PageUtils page);
 
 }

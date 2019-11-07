@@ -1,9 +1,9 @@
 package com.joe.druid.metedata;
 
-import com.joe.druid.hikari.HikariConfigConnect;
 import com.joe.druid.domain.TransferDataSource;
+import com.joe.druid.hikari.HikariConfigConnect;
 import com.joe.druid.utils.JDBCUtils;
-import com.joe.druid.utils.Page;
+import com.joe.druid.utils.PageUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -702,7 +702,7 @@ public class MetaLoaderImpl implements IMetaLoader {
     }
 
     @Override
-    public int queryCount(String tabName, String[] fields, String[] data   ) {
+    public int queryCount(String tabName, String[] fields, String[] data) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String[] result = null;
@@ -749,7 +749,7 @@ public class MetaLoaderImpl implements IMetaLoader {
      * @param tab_fields 数据库的字段
      * @param page 页数
      */
-    public List<Map<String,Object>> query(String tabName, String[] fields, String[] data, String[] tab_fields,Page page){
+    public List<Map<String,Object>> query(String tabName, String[] fields, String[] data, String[] tab_fields, PageUtils page){
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String[] result = null;
