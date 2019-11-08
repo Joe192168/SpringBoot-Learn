@@ -1,5 +1,6 @@
 package com.joe.shardingjdbc;
 
+import com.joe.shardingjdbc.bean.NewDataSource;
 import com.joe.shardingjdbc.bean.Order;
 import com.joe.shardingjdbc.dao.IOrderDao;
 import com.joe.shardingjdbc.dao.impl.OrderDaoImpl;
@@ -10,6 +11,7 @@ import org.junit.Test;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -20,7 +22,31 @@ public class ShardingJdbcTest {
 
     @BeforeClass
     public static void init() throws SQLException {
-        DataSource dataSource = DataSourceFactory.getDataSource();
+
+        List<NewDataSource> dataSourceList = new ArrayList<>();
+
+        //第一数据库
+        NewDataSource dataSource1 = new NewDataSource();
+        dataSource1.setDataIp("localhost");
+        dataSource1.setDataName("ds_0");
+        dataSource1.setDataPort("3306");
+        dataSource1.setDataType("mysql");
+        dataSource1.setUsername("root");
+        dataSource1.setPassword("root");
+
+        //第二数据库
+        NewDataSource dataSource2 = new NewDataSource();
+        dataSource2.setDataIp("localhost");
+        dataSource2.setDataName("ds_1");
+        dataSource2.setDataPort("3306");
+        dataSource2.setDataType("mysql");
+        dataSource2.setUsername("root");
+        dataSource2.setPassword("root");
+
+        dataSourceList.add(dataSource1);
+        dataSourceList.add(dataSource2);
+
+        DataSource dataSource = DataSourceFactory.getDataSource(dataSourceList);
         orderDao = new OrderDaoImpl(dataSource);
     }
 
