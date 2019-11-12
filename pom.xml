@@ -30,7 +30,6 @@
 		<module>springboot-shiro</module>
 		<module>springboot-druid</module>
 		<module>springboot-webflux</module>
-		<module>springboot-mybatis</module>
 		<module>springmvc-mybatisplus</module>
 		<module>springboot-mybatis-plus</module>
 		<module>springboot-shardingjdbc</module>
@@ -60,6 +59,12 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<!-- sqlserver 2008驱动 -->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>6.2.2.jre8</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>

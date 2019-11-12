@@ -4,6 +4,7 @@ import com.joe.druid.metedata.IMetaLoader;
 import com.joe.druid.metedata.MetaLoaderImpl;
 import com.joe.druid.domain.TransferDataSource;
 import com.joe.druid.utils.PageUtils;
+import com.joe.druid.utils.SQLUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -223,6 +224,70 @@ public class DruidApplicationTests {
         List<Map<String,Object>> pageInfo = metaLoader1.query("T_USERS",fields,data,tab_fields,page);
 
         for (Map<String,Object> map:pageInfo){
+            System.out.println(map.get("USER_NAME"));
+        }
+
+    }
+
+
+    //测试分页
+    @Test
+    public void contextLoads7()throws Exception {
+        TransferDataSource transferDataSource = new TransferDataSource();
+        /*transferDataSource.setAddress("jdbc:mysql://localhost:3306/test?serverTimezone=UTC");
+        transferDataSource.setDriver("com.mysql.cj.jdbc.Driver");
+        transferDataSource.setUserName("root");
+        transferDataSource.setPassWord("root");*/
+
+        transferDataSource.setAddress("jdbc:oracle:thin:@10.0.0.100:1521:edw");
+        transferDataSource.setDriver("oracle.jdbc.driver.OracleDriver");
+        transferDataSource.setUserName("inmon");
+        transferDataSource.setPassWord("jhsz0603");
+        transferDataSource.setSchemaName("INMON");
+
+        /*transferDataSource.setAddress("jdbc:postgresql://10.0.0.166:5432/edw");
+        transferDataSource.setDriver("org.postgresql.Driver");
+        transferDataSource.setUserName("gpadmin");
+        transferDataSource.setPassWord("gpadmin123");*/
+
+        IMetaLoader metaLoader1 = new MetaLoaderImpl(transferDataSource);
+
+        //mysql
+        /*String[] fields = {"tag"};
+        String[] data = {"Transaction"};
+        String[] tab_fields = {"create_time"};
+
+        int pageCount = 1;//第几页
+        int pageSize = 5;//每页数，默认10
+        //取得总记录数，创建Page对象
+        int totalRow = metaLoader1.queryCount("t_logger",fields,data);//通过select count 取得总记录数
+        Page page = new Page(totalRow,pageCount,pageSize);
+
+        List<Map<String,Object>> pageInfo = metaLoader1.query("t_logger",fields,data,tab_fields,page);*/
+
+        //oracle
+        /*String[] fields = {"PHONETIC_CODE"};
+        String[] data = {"DSY"};
+        String[] tab_fields = {"USER_NAME"};
+        int pageCount = 1;//第几页
+        int pageSize = 5;//每页数，默认10
+        //取得总记录数，创建Page对象
+        int totalRow = metaLoader1.queryCount("T_USERS",fields,data);//通过select count 取得总记录数
+        Page page = new Page(totalRow,pageCount,pageSize);
+        List<Map<String,Object>> pageInfo = metaLoader1.query("T_USERS",fields,data,tab_fields,page);*/
+
+        //postgresql
+        String[] fields = {"PHONETIC_CODE"};
+        String[] data = {"DSY"};
+        String[] tab_fields = {"USER_NAME"};
+        int pageCount = 1;//第几页
+        int pageSize = 5;//每页数，默认10
+
+        String sql = SQLUtils.joinPageQuerySql("*","select * from t_users","1","10","");
+
+        List<Map<String, Object>> list = metaLoader1.executeQuery(sql,null);//通过select count 取得总记录数
+
+        for (Map<String,Object> map:list){
             System.out.println(map.get("USER_NAME"));
         }
 

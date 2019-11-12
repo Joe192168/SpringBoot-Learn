@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <mybatisplus.version>3.0.7.1</mybatisplus.version>
+        <mybatisplus.version>3.0.6</mybatisplus.version>
     </properties>
 
     <dependencies>
@@ -30,11 +30,20 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatisplus.version}</version>
         </dependency>
+
+        <!--代码生成器 mapper.xml模板依赖start-->
+        <!-- velocity 模板引擎, 默认 -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>${mybatisplus.version}</version>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
         </dependency>
+        <!-- freemarker 模板引擎 -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+        <!--代码生成器 mapper.xml模板依赖end-->
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

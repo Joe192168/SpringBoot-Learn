@@ -533,7 +533,7 @@ public class MetaLoaderImpl implements IMetaLoader {
         try {
             stmt = conn.prepareStatement(sql);
             //有可能有参数
-            for (int i = 0; i < args.length; i++) {
+            for (int i = 0; args!=null&&i < args.length; i++) {
                 stmt.setObject(i + 1, args[i]);
             }
             //执行sql语句
