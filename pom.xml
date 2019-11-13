@@ -34,6 +34,7 @@
 		<module>springboot-mybatis-plus</module>
 		<module>springboot-shardingjdbc</module>
 		<module>springboot-shardingjdbc2</module>
+		<module>springboot-druid-mybatis-atomikos</module>
 	</modules>
 
 	<dependencies>

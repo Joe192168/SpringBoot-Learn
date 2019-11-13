@@ -1,0 +1,2 @@
+{"id":"169.254.161.171.tm157363836897700001","wasCommitted":true,"participants":[{"uri":"169.254.161.171.tm1","state":"COMMITTING","expires":1573638379206,"resourceName":"db1"},{"uri":"169.254.161.171.tm2","state":"COMMITTING","expires":1573638379207,"resourceName":"db2"}]}
+{"id":"169.254.161.171.tm157363836897700001","wasCommitted":true,"participants":[{"uri":"169.254.161.171.tm1","state":"TERMINATED","expires":1573638379212,"resourceName":"db1"},{"uri":"169.254.161.171.tm2","state":"TERMINATED","expires":1573638379212,"resourceName":"db2"}]}
