@@ -33,6 +33,7 @@ public class CxfConfig {
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus, commonService);
         endpoint.publish("/CommonService");
+        System.out.println("endpoint:"+endpoint.getAddress());
         return endpoint;
     }
 }

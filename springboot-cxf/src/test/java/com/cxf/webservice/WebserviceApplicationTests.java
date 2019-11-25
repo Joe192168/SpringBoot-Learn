@@ -129,4 +129,10 @@ public class WebserviceApplicationTests {
 		}
 	}
 
+	@Test
+	public void cl6(){
+		String str = "1,2";
+		System.out.println("1".concat(str));
+	}
+
 }

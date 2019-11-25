@@ -27,4 +27,11 @@ public interface ICommonService {
 
     @WebMethod(action = "getAll")
     public List<OfficeProperty> getAll();
+
+    @WebMethod(action = "getDepartmentApi")
+    public String getDepartmentApi(@WebParam(name = "startTime",targetNamespace="http://service.webservice.cxf.com/")String startTime);
+
+
+    @WebMethod(action = "getPersonnelApi")
+    public String getPersonnelApi(@WebParam(name = "startTime",targetNamespace="http://service.webservice.cxf.com/")String startTime);
 }

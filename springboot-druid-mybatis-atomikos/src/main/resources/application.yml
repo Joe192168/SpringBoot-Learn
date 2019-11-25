@@ -67,7 +67,6 @@ spring:
         url-pattern: /*
         # 排除静态资源的请求
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
-
       # Druid内置提供了一个StatViewServlet用于展示Druid的统计信息。
       stat-view-servlet:
         #是否启用StatViewServlet 默认值true
