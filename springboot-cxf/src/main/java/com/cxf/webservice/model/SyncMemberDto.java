@@ -473,7 +473,7 @@ public class SyncMemberDto {
         return outeruserid;
     }
 
-    public void setOuteruserid(BigDecimal outeruserid) {
+        public void setOuteruserid(BigDecimal outeruserid) {
         this.outeruserid = outeruserid;
     }
 

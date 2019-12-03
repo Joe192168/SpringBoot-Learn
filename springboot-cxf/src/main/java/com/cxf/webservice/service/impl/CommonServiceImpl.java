@@ -71,10 +71,10 @@ public class CommonServiceImpl implements ICommonService {
                 public SystemResources mapRow(ResultSet resultSet, int i) throws SQLException {
                     SystemResources systemResources = new SystemResources();
                     systemResources.setOuterid(resultSet.getBigDecimal("ID"));
-                    systemResources.setHiscode(resultSet.getBigDecimal("ID")+"");
+                    systemResources.setHiscode("his_"+resultSet.getBigDecimal("ID"));
                     systemResources.setOfficename(resultSet.getString("RESOURCE_NAME"));
                     systemResources.setOuterparentid(resultSet.getBigDecimal("PARENTID"));
-                    systemResources.setOfficelevel(resultSet.getInt("RESOURCE_LEVEL"));
+                    //systemResources.setOfficelevel(resultSet.getInt("RESOURCE_LEVEL"));
                     return systemResources;
                 }
             });
@@ -99,7 +99,7 @@ public class CommonServiceImpl implements ICommonService {
                 public SyncMemberDto mapRow(ResultSet resultSet, int i) throws SQLException {
                     SyncMemberDto syncMemberDto = new SyncMemberDto();
                     syncMemberDto.setOuteruserid(resultSet.getBigDecimal("ID"));
-                    syncMemberDto.setHiscode(resultSet.getString("CODE"));
+                    syncMemberDto.setHiscode("his_"+resultSet.getBigDecimal("ID"));
                     syncMemberDto.setOuterorganid(resultSet.getBigDecimal("RESOURCEID"));
                     syncMemberDto.setUsername(resultSet.getString("USER_NAME"));
                     syncMemberDto.setLoginname(resultSet.getString("LOGIN_NAME"));
