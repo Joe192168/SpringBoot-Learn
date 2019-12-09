@@ -58,4 +58,9 @@ public class MyUserDetailsService implements UserDetailsService {
 
         return myUser;
     }
+
+    public String encode(String str){
+        return this.passwordEncoder.encode(str);
+    }
+
 }
