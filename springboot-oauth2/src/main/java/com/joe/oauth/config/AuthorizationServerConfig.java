@@ -32,7 +32,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.realm(REALM);
+        //允许客户表单认证
         security.allowFormAuthenticationForClients();
+        //对于tokenKeyAccess控制器[框架自带的校验]的/oauth/check端点允许所有客户端发送器请求而不会被Spring-security拦截
         security.tokenKeyAccess("isAuthenticated()");
     }
 
