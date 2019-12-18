@@ -1,4 +1,4 @@
-package com.example.test.web;
+package com.joe.docker.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

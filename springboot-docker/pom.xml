@@ -8,18 +8,19 @@
         <version>2.2.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>test</artifactId>
+    <groupId>com.joe</groupId>
+    <artifactId>springboot-docker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>test</name>
+    <name>springboot-docker</name>
+    <packaging>war</packaging>
     <description>Demo project for Spring Boot</description>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <!--properties节点中设置docker镜像的前缀“springboot”-->
         <docker.image.prefix>springio</docker.image.prefix>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
@@ -75,7 +76,7 @@
             </plugin>
             <!-- end::plugin[] -->
         </plugins>
-        <finalName>test</finalName>
+        <finalName>docker</finalName>
     </build>
 
 </project>
