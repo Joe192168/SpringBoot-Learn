@@ -11,5 +11,5 @@ COPY springboot-maker-docker-0.0.1-SNAPSHOT.jar app.jar
 RUN bash -c "touch /app.jar"
 #默认8080端口，我的server.port=80
 #指定项目暴露的端口号，与项目配置一样,即容器配置的暴露端口
-EXPOSE 80
+EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
