@@ -1,2 +1,9 @@
 server:
   port: 8080
+
+# 修改后缀
+spring:
+  mvc:
+    view:
+      prefix: /
+      suffix: .html
