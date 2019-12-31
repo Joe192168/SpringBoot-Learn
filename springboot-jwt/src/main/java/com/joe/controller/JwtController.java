@@ -1,7 +1,7 @@
 package com.joe.controller;
 
+import com.idsmanager.dingdang.jwt.DingdangUserRetriever;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,12 +25,19 @@ public class JwtController {
     //1.接收方法为GET方式,参数名为 id_token
     //2.<解析令牌>为解析 id_token 并验证代码
         //1.使用公钥，解析 id_token
-        return id_token;
-    }
 
-    @GetMapping("/oauth/index")
-    public String oauthIndex(){
-        return "hello oauth!";
+        //1.使用公钥，解析 id_token
+        // 使用PublicKey解密上一步获取的 id_token 令牌
+        String PublicKey = "{\"kty\":\"RSA\",\"kid\":\"6185075449758146752\",\"alg\":\"RS256\",\"n\":\"gySnYHNMhTYDxhRx1-79BVf-Pj9He8y6Ecn3QGwW6De8ONc1eNWD25XBhDZwkHrh8g3bZY0ckPf0PE78IQh4GBvhx7pdkztvxnqhLO_GgK96JEYvI5B_whrASEfKMHBcnnSJKduhUMm5UaNcGutMXPsu9hxltQeFXGNEw74oaZcTfukK1GJj9HvlA26Lw5s_L0nc1M5_X9AMqtMW6mcn3DnuEeE9k8Z4ZW1035VBMNONZy7syYI4wK8umVqjXvN8MZFqyK5PRx3lrg4YhtcGE_kZb_JiZuwXNuKUTJW9dpJqTqGdG9s5P9hHE25UdUKResQngyrHkbNGlM8O7EmCqQ\",\"e\":\"AQAB\"}";
+        DingdangUserRetriever retriever = new DingdangUserRetriever( id_token,PublicKey);
+        DingdangUserRetriever.User user = null;
+        try {
+            //2.获取用户信息
+            user = retriever.retrieve();
+        } catch (Exception e) {
+            return "error";
+        }
+        return user.getName();
     }
 
 }
