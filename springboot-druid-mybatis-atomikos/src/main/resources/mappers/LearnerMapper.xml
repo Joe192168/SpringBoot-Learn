@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.joe.atomikos.mapper.LearnerMapper">
+<mapper namespace="com.joe.oauth.atomikos.mapper.LearnerMapper">
 
-    <select id="selectAll" resultType="com.joe.atomikos.pojo.Learner">
+    <select id="selectAll" resultType="com.joe.oauth.atomikos.pojo.Learner">
         select * from learner
     </select>
 
@@ -12,7 +12,7 @@
         insert into learner (name, age, salary, birthday) VALUES (#{lea.name}, #{lea.age}, #{lea.salary}, #{lea.birthday})
     </insert>
 
-    <select id="selectById" resultType="com.joe.atomikos.pojo.Learner">
+    <select id="selectById" resultType="com.joe.oauth.atomikos.pojo.Learner">
       select * from learner where name = #{id}
     </select>
 

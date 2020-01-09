@@ -2,8 +2,8 @@ package genterator;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.joe.entity.User;
-import com.joe.service.IUserService;
+import com.joe.oauth.entity.User;
+import com.joe.oauth.service.IUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

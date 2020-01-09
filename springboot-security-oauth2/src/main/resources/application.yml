@@ -1,0 +1,10 @@
+server:
+  servlet:
+    session:
+      timeout: 300
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/alan-oauth?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.joe.atomikos.mapper.ProgrammerMapper">
+<mapper namespace="com.joe.oauth.atomikos.mapper.ProgrammerMapper">
 
-    <select id="selectAll" resultType="com.joe.atomikos.pojo.Programmer">
+    <select id="selectAll" resultType="com.joe.oauth.atomikos.pojo.Programmer">
         select * from programmer
     </select>
 
@@ -12,7 +12,7 @@
         insert into programmer (name, age, salary, birthday) VALUES (#{pro.name}, #{pro.age}, #{pro.salary}, #{pro.birthday})
     </insert>
 
-    <select id="selectById" resultType="com.joe.atomikos.pojo.Programmer">
+    <select id="selectById" resultType="com.joe.oauth.atomikos.pojo.Programmer">
       select * from programmer where name = #{id}
     </select>
 
