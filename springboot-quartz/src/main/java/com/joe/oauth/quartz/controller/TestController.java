@@ -15,7 +15,7 @@ public class TestController {
     @RequestMapping("/addjob")
     public void startJob(String type) {
         if("TestJob1".equals(type)) {
-            quartzService.addJob(TestJob1.class, "job1", "test", "0/5 * * * * ?");
+            quartzService.addJob(TestJob1.class, "job1", "test", "* * 3 * * ? ");
         }else {
             quartzService.addJob(TestJob2.class, "job2", "test", "0/5 * * * * ?");
         }
