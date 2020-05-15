@@ -29,7 +29,7 @@
     <oracle.version>6</oracle.version>
     <log4j.version>1.2.17</log4j.version>
     <slf4j.version>1.7.25</slf4j.version>
-    <c3p0.version>0.9.5.2</c3p0.version>
+    <c3p0.version>0.9.5.4</c3p0.version>
     <servlet.version>3.1.0</servlet.version>
     <jstl.version>1.2.5</jstl.version>
     <taglibs.version>1.2.5</taglibs.version>
