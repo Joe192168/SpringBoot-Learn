@@ -34,7 +34,7 @@
 
     <properties>
         <spring.version>4.3.7.RELEASE</spring.version>
-        <axis2.version>1.6.2</axis2.version>
+        <axis2.version>1.6.3</axis2.version>
     </properties>
 
     <dependencies>
